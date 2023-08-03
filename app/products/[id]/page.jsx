@@ -4,8 +4,8 @@ import { products } from '@/app/mocks/product.json';
 const Page = ({ params }) => {
   const categoryColors = {
     Tortillas: 'bg-blue-500 text-white',
-    Menu: 'bg-orange-500 text-white',
-    Picar: 'bg-amber-500 text-white',
+    Menu: 'bg-orange-400 text-white',
+    Picar: 'bg-red-500 text-white',
     Pollos: ' bg-yellow-700 text-white',
     Bolsa: 'bg-white text-black'
   };
@@ -38,7 +38,7 @@ const Page = ({ params }) => {
         </div>
 
       </div>
-   
+
     </>
 
   )

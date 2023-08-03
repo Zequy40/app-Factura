@@ -32,7 +32,7 @@ const buy = (product) => {
       <div className="grid grid-cols-2 place-items-center gap-3 mx-1" >
         {
           products.map((product) => (
-<button onClick={() => buy(product)} key={product.id} className="w-full p-1 bg-slate-400 rounded-lg mx-2 cursor-pointer">
+<button onClick={() => buy(product)} key={product.id} className="w-full p-1 bg-slate-400 rounded-lg mx-2 cursor-pointer active:scale-90">
             <div>
               <div className={` bg-slate-600 rounded-lg text-center font-semibold uppercase ${categoryColors[product.category]}`}>
                 {product.category}
@@ -40,7 +40,7 @@ const buy = (product) => {
               <div className="flex flex-col items-center text-white">
                 <h5 className="text-xs">{product.title}</h5>
                 <p className="text-sm text-center">{product.description}</p>
-                <p className="card-text">{product.price}</p>
+                <p className="card-text">{product.price}€</p>
               </div>
             </div>
 </button>

@@ -1,10 +1,12 @@
 'use client'
-import { Fragment } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleCart } from '@/store/slice';
+import { returnProduct, saveProduct, toggleCart } from '@/store/slice';
+import { useRouter } from 'next/navigation'
+
 
 export default function Example() {
     const isOpen = useSelector((state) => state.cart.isOpen)
@@ -12,9 +14,25 @@ export default function Example() {
 
     const cart = useSelector(state => state.misCompras.myCart)
     const dispatchCart = useDispatch()
-  
+
     const handleCloseCart = () => {
         dispatch(toggleCart()); // Despachar la acción toggleCart para cerrar el carrito
+    }
+
+    const [total, setTotal] = useState(0)
+
+    const totalCart = useMemo(() => setTotal(cart.reduce((acumulador, valorActual) => acumulador + valorActual.price, 0)), [cart])
+
+    const eliminar = (product) => {
+        dispatch(returnProduct(product))
+    }
+    const router = useRouter()
+
+    const HandleFinalizarCompra = () => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        dispatch(saveProduct())
+        handleCloseCart()
+        router.push('/')
     }
 
     return (
@@ -65,35 +83,40 @@ export default function Example() {
                                             <div className="mt-8">
                                                 <div className="flow-root">
                                                     <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                        {cart.map((valor, indice) => (
-                                                            <li key={indice} className="flex py-6">
+                                                        {cart.length > 0 ?
+                                                            (cart.map((valor, indice) => (
+                                                                <li key={indice} className="flex py-6">
 
 
-                                                                <div className="ml-4 flex flex-1 flex-col">
-                                                                    <div>
-                                                                        <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                            <h3>
-                                                                                <Link href={`/products/${valor.id}`}>{valor.category}</Link>
-                                                                            </h3>
-                                                                            <p className="ml-4">{valor.price}</p>
+                                                                    <div className="ml-4 flex flex-1 flex-col">
+                                                                        <div>
+                                                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                                <h3>
+                                                                                    <Link href={`/products/${valor.id}`}>{valor.category}</Link>
+                                                                                </h3>
+                                                                                <p className="ml-4">{valor.price}€</p>
+                                                                            </div>
+                                                                            <p className="mt-1 text-sm text-gray-500">{valor.title}</p>
                                                                         </div>
-                                                                        <p className="mt-1 text-sm text-gray-500">{valor.title}</p>
-                                                                    </div>
-                                                                    <div className="flex flex-1 items-end justify-between text-sm">
-                                                                        <p className="text-gray-500">Qty {valor.quantity}</p>
+                                                                        <div className="flex flex-1 items-end justify-between text-sm">
+                                                                            <p className="text-gray-500">Qty {valor.quantity}</p>
 
-                                                                        <div className="flex">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="font-medium text-indigo-600 hover:text-indigo-500"
-                                                                            >
-                                                                                Remove
-                                                                            </button>
+                                                                            <div className="flex">
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                                    onClick={() => eliminar(valor.id)}
+                                                                                >
+                                                                                    Eliminar
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </li>
-                                                        ))}
+                                                                </li>
+                                                            )))
+                                                            :
+                                                            (<li className="flex py-6">No hay producto en el carrito</li>)
+                                                        }
                                                     </ul>
                                                 </div>
                                             </div>
@@ -101,27 +124,28 @@ export default function Example() {
 
                                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                             <div className="flex justify-between text-base font-medium text-gray-900">
-                                                <p>Subtotal</p>
-                                                <p>$262.00</p>
+                                                <p>Total</p>
+                                                <p>{total}€</p>
                                             </div>
-                                            <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+
                                             <div className="mt-6">
-                                                <a
+                                                <button
+                                                    onClick={()=>HandleFinalizarCompra()}
                                                     href="#"
                                                     className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                                 >
-                                                    Checkout
-                                                </a>
+                                                    finalizar compra
+                                                </button>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 <p>
-                                                    or
+                                                    o&nbsp;
                                                     <button
                                                         type="button"
                                                         className="font-medium text-indigo-600 hover:text-indigo-500"
-                                                        onClick={() => setOpen(false)}
+                                                        onClick={handleCloseCart}
                                                     >
-                                                        Continue Shopping
+                                                        Seguir Comprando
                                                         <span aria-hidden="true"> &rarr;</span>
                                                     </button>
                                                 </p>

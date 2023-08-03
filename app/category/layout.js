@@ -1,29 +1,19 @@
-import './globals.css'
+import './../globals.css'
 import { Quattrocento_Sans } from 'next/font/google'
 import Providers from '@/store/provider';
+import Header from '../components/header';
+import Carts from '../components/carts';
 
 const inter = Quattrocento_Sans({ weight: '400', subsets: ['latin'] })
-
-export const metadata = {
-  title: 'App MCM',
-  description: 'App gestion',
-  icons: {
-    icon: {
-      rel: 'icon',
-      type: 'image/svg+xml',
-      url: '/mcm.svg'
-    }
-  }
-}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <Providers>
-        <body className={inter.className}>
-     
-        {children}
-       </body>
+        <body>
+          <Header />
+          <Carts />
+          <div>{children}</div></body>
       </Providers>
     </html>
   )

@@ -8,13 +8,13 @@ export const origenSlice = createSlice({
     },
     reducers: {
         saveProduct: (state, action) => {
-
+            state.myCart = []
         },
         buyProduct: (state, action) => {
             state.myCart = [...state.myCart, action.payload]
         },
         returnProduct: (state, action) => {
-
+            state.myCart = state.myCart.filter(object => object.id !== action.payload)
         }
     }
 })
