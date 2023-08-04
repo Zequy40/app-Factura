@@ -2,16 +2,8 @@
 import React, { useState } from 'react';
 import { buyProduct } from '@/store/slice';
 import {useDispatch} from 'react-redux';
+import Link from 'next/link';
 
-
-
-const categoryColors = {
-  Tortillas: 'bg-blue-500 text-white',
-  Menu: 'bg-orange-500 text-white',
-  Picar: 'bg-amber-500 text-white',
-  Pollos: ' bg-yellow-700 text-white',
-  Bolsa: 'bg-white text-black'
-};
 
 function Search({ products }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,7 +37,8 @@ const buy = (product) => {
   return (
     <>
       <div className='max-w-[760px] bg-gray-200 '>
-       
+      
+       <Link href={'/factura'}><div className='w-full p-4 bg-teal-700 text-white text-center text-lg'>Ticket</div></Link>
         <div className='flex justify-between w-full px-2 pb-4 mt-3 items-center border-y-[1px] border-gray-400 pt-5'>
           <div className='flex gap-2'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className='w-4' viewBox="0 0 16 16">
@@ -71,12 +64,9 @@ const buy = (product) => {
           <ul>
           {displayedProducts.map((product) => (
               <li key={product.id}>
-              <button onClick={() => buy(product)} key={product.id} className="max-w-[760px] w-full border border-black my-2 p-1 bg-slate-400 rounded-lg mx-2 cursor-pointer active:scale-90">
+              <button onClick={() => buy(product)} key={product.id} className="max-w-[760px] w-full border border-black my-1 p-1 bg-slate-400 rounded-lg  cursor-pointer active:scale-90">
             <div>
-              <div className={` bg-slate-600 rounded-lg text-center font-semibold uppercase ${categoryColors[product.category]}`}>
-                {product.category}
-              </div>
-              <div className="flex flex-col items-center text-white">
+              <div className="flex justify-between items-center text-white">
                 <h5 className="text-xs">{product.title}</h5>
                 <p className="text-sm text-center">{product.description}</p>
                 <p className="card-text">{product.price}€</p>

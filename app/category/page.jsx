@@ -8,21 +8,14 @@ export default function Category() {
     // Convertir el conjunto de categorías únicas en un array
     const categoriesArray = [...uniqueCategories];
 
-    const categoryColors = {
-        Tortillas: 'bg-blue-500 text-white',
-        Menu: 'bg-orange-400 text-white',
-        Picar: 'bg-red-500 text-white',
-        Pollos: ' bg-yellow-700 text-white',
-        Bolsa: 'bg-white text-black'
-      };
 
     return (
         <>
             <div className="max-w-[760px] w-full bg-gray-200 py-7">
-                <div className="grid grid-cols-2  place-items-center gap-16 mx-1" >
+                <div className="flex flex-col m-2 bg-orange-300" >
                     {categoriesArray.map(category => (
-                        <div key={category}>
-                            <Link href={`/category/${category}`} className={` bg-slate-600 rounded-lg p-6 text-center font-semibold uppercase ${categoryColors[category]}`}>{category}</Link>
+                        <div key={category} >
+                            <Link href={`/category/${category}`} className="p-10 flex items-center justify-center text-white border-b border-gray-300 text-center font-semibold uppercase" >{category}</Link>
                         </div>
                     ))}
                 </div>

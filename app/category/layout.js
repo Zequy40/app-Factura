@@ -12,8 +12,9 @@ export default function RootLayout({ children }) {
       <Providers>
         <body>
           <Header />
+          <div className='relative top-[4.25rem]'>
           <Carts />
-          <div>{children}</div></body>
+          <div>{children}</div></div></body>
       </Providers>
     </html>
   )

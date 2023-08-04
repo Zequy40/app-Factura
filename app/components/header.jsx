@@ -17,7 +17,7 @@ function Header() {
   }
   return (
     <>
-      <div className='max-w-[760px] bg-gray-200 '>
+      <div className='max-w-[760px] bg-gray-200 fixed w-full top-0 z-10'>
         <div className='w-full pb-4 pt-4 bg-gray-200 px-3'>
           <div className='flex justify-around mb-1 py-[2px]  bg-slate-500 rounded'>
             <Link href="./../category"><button className={router === '/category' || router === '/category/Pollos' || router === '/category/Picar' || router === '/category/Tortillas' || router === '/category/Menu' || router === '/category/Bolsa' ? 'p-2 capitalize bg-slate-200 rounded' : 'p-2 capitalize text-white'}>categoria</button></Link>

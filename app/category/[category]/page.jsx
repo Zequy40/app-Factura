@@ -35,18 +35,23 @@ const CategoryProduct = ({ params }) => {
     return (
         <>
             
-                <div className="max-w-[760px] w-full bg-gray-200 my-7">
+                <div className="max-w-[760px] w-full bg-gray-200 mt-2">
                     
-                    <div className="grid grid-cols-2 place-items-center gap-3 mx-2 my-6" >
+                    <div className="flex flex-col" >
                         {filteredProduct.map((productCategory) =>
-                            <button onClick={() => buy(productCategory)} key={productCategory.id} className=' bg-slate-400 rounded-lg w-full'>
+                            <button onClick={() => buy(productCategory)} key={productCategory.id} className=' w-full flex bg-slate-400 cursor-pointer active:scale-90 border-b border-black'>
 
-                                <div className={` bg-slate-600 rounded-lg text-center font-semibold uppercase ${categoryColors[productCategory.category]}`}>{productCategory.category}</div>
-                                <div className="w-full p-1 text-center">{productCategory.title}</div>
-                                <div className="flex flex-col  items-center text-white">
-                                    <div className="card-text text-center text-black">{productCategory.price}€</div>
-                                    <div className="text-xs">{productCategory.quantity}</div>
-                                </div>
+                            <div className={`flex items-center justify-start px-2 py-5 w-1/4 ${categoryColors[productCategory.category]}`}>
+             <div className="rounded-lg text-center font-semibold uppercase">
+                    {productCategory.category}
+                  </div>
+            </div>
+              <div className='flex items-center justify-between px-2 py-5 w-3/4'>
+                 
+                <h5 className="text-md font-bold text-white">{productCategory.title}</h5>
+                  
+                  <p className="text-sm text-white">{productCategory.price}€</p>
+              </div>
 
                             </button>
                         )}
