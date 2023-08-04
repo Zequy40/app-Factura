@@ -1,4 +1,5 @@
 import { products } from '@/app/mocks/product.json';
+import Link from 'next/link';
 
 
 const Page = ({ params }) => {
@@ -24,20 +25,29 @@ const Page = ({ params }) => {
 
   return (
     <>
-      <div className="max-w-[760px] w-full bg-gray-200 my-7">
-        <div className="grid grid-cols-2 place-items-center gap-3 mx-1" >
+      <div className="max-w-[760px] w-full h-[100vh] bg-gray-700 flex items-center justify-center">
+        <div className="flex flex-col gap-2 p-16 rounded-xl bg-gray-300 relative" >
+        <Link href={'/'} className="flex items-center justify-center border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 absolute w-12 h-12 top-1 left-1 rounded-full">X</Link>
+          <div className={`flex items-center justify-center p-4 rounded-lg text-center font-semibold uppercase ${categoryColors[product.category]}`}>{product.category}</div>
+          <div className="flex gap-4">
+            <div className="w-full text-lg p-1">{product.title}:</div>
+            <div className="flex justify-center items-center text-white">
+              <div className="card-text text-center text-black">{product.price}€</div>
+              
 
-          <div>
-            <div className={` bg-slate-600 rounded-lg text-center font-semibold uppercase ${categoryColors[product.category]}`}>{product.category}</div>
-            <div className="w-full p-1 bg-slate-400 rounded-lg">{product.title}</div>
-            <div className="flex flex-col items-center text-white">
-              <div className="card-text text-center text-black">{product.price}</div>
-              <div className="text-xs">{product.quantity}</div>
             </div>
+            
           </div>
+          <div className="flex flex-col mb-8">
+          <div className="text-xs">Descripción:</div>
+          <div className="text-md">{product.description}</div>
+          </div>
+        
         </div>
 
       </div>
+
+
 
     </>
 
