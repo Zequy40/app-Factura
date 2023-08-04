@@ -19,7 +19,7 @@ const buy = (product) => {
  dispatch(buyProduct({
   title:product.title,
   price:product.price,
-  quantity:product.quantity,
+  quantity:1,
   category:product.category,
   id:product.id
 
@@ -41,6 +41,7 @@ const buy = (product) => {
                 <h5 className="text-xs">{product.title}</h5>
                 <p className="text-sm text-center">{product.description}</p>
                 <p className="card-text">{product.price}€</p>
+                
               </div>
             </div>
 </button>

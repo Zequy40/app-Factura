@@ -2,7 +2,7 @@ import './globals.css'
 import { Quattrocento_Sans } from 'next/font/google'
 import Providers from '@/store/provider';
 
-const inter = Quattrocento_Sans({ weight: '400', subsets: ['latin'] })
+const inter = Quattrocento_Sans({ weight: ['400', '700'], subsets: ['latin'] })
 
 export const metadata = {
   title: 'App MCM',

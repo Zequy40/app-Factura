@@ -21,10 +21,13 @@ export default function Example() {
 
     const [total, setTotal] = useState(0)
 
-    const totalCart = useMemo(() => setTotal(cart.reduce((acumulador, valorActual) => acumulador + valorActual.price, 0)), [cart])
+    const totalCart = useMemo(() => setTotal(cart.reduce((acumulador, valorActual) => acumulador + valorActual.price * valorActual.quantity, 0)), [cart])
 
     const eliminar = (product) => {
         dispatch(returnProduct(product))
+    }
+    const HandleVaciarCart = () => {
+        dispatch(saveProduct())
     }
     const router = useRouter()
 
@@ -32,7 +35,7 @@ export default function Example() {
         localStorage.setItem('cart', JSON.stringify(cart));
         dispatch(saveProduct())
         handleCloseCart()
-        router.push('/')
+        router.push('/factura')
     }
 
     return (
@@ -99,7 +102,7 @@ export default function Example() {
                                                                             <p className="mt-1 text-sm text-gray-500">{valor.title}</p>
                                                                         </div>
                                                                         <div className="flex flex-1 items-end justify-between text-sm">
-                                                                            <p className="text-gray-500">Qty {valor.quantity}</p>
+                                                                            <p className="text-gray-500">Qty: {valor.quantity}</p>
 
                                                                             <div className="flex">
                                                                                 <button
@@ -128,13 +131,21 @@ export default function Example() {
                                                 <p>{total}€</p>
                                             </div>
 
-                                            <div className="mt-6">
+                                            <div className="flex gap-4 mt-6">
                                                 <button
                                                     onClick={()=>HandleFinalizarCompra()}
                                                     href="#"
                                                     className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                                 >
                                                     finalizar compra
+                                                </button>
+                                            
+                                                <button
+                                                    onClick={()=>HandleVaciarCart()}
+                                                    href="#"
+                                                    className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-700"
+                                                >
+                                                    vaciar carrito
                                                 </button>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
