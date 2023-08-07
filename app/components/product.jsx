@@ -9,7 +9,8 @@ const categoryColors = {
   Tortillas: 'bg-blue-500 text-white',
   Menu: 'bg-orange-500 text-white',
   Picar: 'bg-amber-500 text-white',
-  Pollos: ' bg-yellow-700 text-white',
+  Pollos: 'bg-yellow-700 text-white',
+  Pescado: 'bg-indigo-900 text-white',
   Bolsa: 'bg-white text-black'
 };
 

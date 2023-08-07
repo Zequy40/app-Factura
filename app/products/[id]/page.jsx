@@ -8,6 +8,7 @@ const Page = ({ params }) => {
     Menu: 'bg-orange-400 text-white',
     Picar: 'bg-red-500 text-white',
     Pollos: ' bg-yellow-700 text-white',
+    Pescado: ' bg-indigo-900 text-white',
     Bolsa: 'bg-white text-black'
   };
   const { id } = params;
