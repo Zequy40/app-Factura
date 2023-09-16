@@ -2,16 +2,17 @@
 import { buyProduct } from '@/store/slice';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ProductMob from './../styles/Product.module.css'
 
 
 
 const categoryColors = {
-  Tortillas: 'bg-blue-500 text-white',
-  Menu: 'bg-orange-500 text-white',
-  Picar: 'bg-amber-500 text-white',
-  Pollos: 'bg-yellow-700 text-white',
-  Pescado: 'bg-indigo-900 text-white',
-  Bolsa: 'bg-white text-black'
+  Tortillas: `${ProductMob.tortillaCat}`,
+  Menu: `${ProductMob.menuCat}`,
+  Picar: `${ProductMob.picarCat}`,
+  Pollos: `${ProductMob.polloCat}`,
+  Pescado: `${ProductMob.pescadoCat}`,
+  Bolsa: `${ProductMob.bolsaCat}`
 };
 
 export default function ProductList({ products }) {
@@ -56,28 +57,28 @@ export default function ProductList({ products }) {
   };
 
   return (
-    <div className="max-w-[760px] w-full bg-gray-200 mt-2">
-      <div className="flex flex-col " >
+    <div className={ProductMob.header}>
+      <div className={ProductMob.contain} >
         {
           products.map((product) => (
             <button 
             onClick={() => buy(product)} key={product.id} 
-            className="w-full flex bg-slate-400 cursor-pointer active:scale-90 border-b border-black"
+            className={ProductMob.blockBtn}
             >
-            <div className={`flex items-center justify-start px-2 py-5 w-1/4 ${categoryColors[product.category]}`}>
-             <div className="rounded-lg text-center font-semibold uppercase">
+            <div className={`${ProductMob.card} ${categoryColors[product.category]}`}>
+             <div className={ProductMob.subCard}>
                     {product.category}
                   </div>
             </div>
-              <div className='flex items-center justify-between px-2 py-5 w-3/4'
+              <div className={ProductMob.band}
               onTouchStart={() => handleButtonPress(product.id)} 
             onTouchEnd={handleButtonRelease}
             onMouseDown={() => handleButtonPress(product.id)}
             onMouseUp={handleButtonRelease}>
                  
-                <h5 className="text-md font-bold text-white">{product.title}</h5>
+                <h5 className={ProductMob.h5}>{product.title}</h5>
                   
-                  <p className="text-sm text-white">{product.price}€</p>
+                  <p className={ProductMob.p}>{product.price}€</p>
               </div>
             </button>
           ))

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCart } from '@/store/slice';
 import { usePathname } from 'next/navigation';
+import HeaderMob from './../styles/Header.module.css'
 
 
 function Header() {
@@ -17,12 +18,12 @@ function Header() {
   }
   return (
     <>
-      <div className='max-w-[760px] bg-gray-200 fixed w-full top-0 z-10'>
-        <div className='w-full pb-4 pt-4 bg-gray-200 px-3'>
-          <div className='flex justify-around mb-1 py-[2px]  bg-slate-500 rounded'>
-            <Link href="./../category"><button className={router === '/category' || router === '/category/Pollos' || router === '/category/Picar' || router === '/category/Tortillas' || router === '/category/Menu' || router === '/category/Bolsa' ? 'p-2 capitalize bg-slate-200 rounded ' : 'p-2 capitalize text-white hover:bg-slate-200 hover:rounded hover:text-black'}>categoria</button></Link>
-            <Link href="/"><button className={router === '/' ? 'p-2 capitalize bg-slate-200 rounded ' : 'p-2 capitalize text-white hover:bg-slate-200 hover:rounded hover:text-black'}>productos</button></Link>
-            <button className='p-2 capitalize text-white hover:bg-slate-200 hover:rounded hover:text-black' onClick={handleCartToggle}>compras</button>
+      <div className={HeaderMob.header}>
+        <div className={HeaderMob.btn}>
+          <div className={HeaderMob.blockBtn}>
+            <Link href="./../category"><button className={router === '/category' || router === '/category/Pollos' || router === '/category/Picar' || router === '/category/Tortillas' || router === '/category/Menu' || router === '/category/Bolsa' ? `${HeaderMob.active}` : `${HeaderMob.normal}`}>categoria</button></Link>
+            <Link href="/"><button className={router === '/' ? `${HeaderMob.active}` : `${HeaderMob.normal}`}>productos</button></Link>
+            <button className={HeaderMob.normal} onClick={handleCartToggle}>compras</button>
           </div>
         </div>
         

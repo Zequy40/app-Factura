@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { buyProduct } from '@/store/slice';
 import {useDispatch} from 'react-redux';
 import Link from 'next/link';
+import SearchMob from './../styles/Search.module.css'
 
 
 function Search({ products }) {
@@ -36,12 +37,12 @@ const buy = (product) => {
   
   return (
     <>
-      <div className='max-w-[760px] bg-gray-200 '>
+      <div className={SearchMob.header}>
       
-       <Link href={'/factura'}><div className='w-full p-4 bg-teal-700 text-white text-center text-lg'>Ticket</div></Link>
-        <div className='flex justify-between w-full px-2 pb-4 mt-3 items-center border-y-[1px] border-gray-400 pt-5'>
-          <div className='flex gap-2'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className='w-4' viewBox="0 0 16 16">
+       <Link href={'/factura'}><div className={SearchMob.btn}>Ticket</div></Link>
+        <div className={SearchMob.contain}>
+          <div className={SearchMob.subContain}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className={SearchMob.svg} viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
             <input
@@ -52,7 +53,7 @@ const buy = (product) => {
               onChange={handleSearchChange}
             />
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className='w-5' viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className={SearchMob.svg} viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </div>
