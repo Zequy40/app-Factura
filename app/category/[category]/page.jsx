@@ -5,16 +5,17 @@ import { buyProduct } from '@/store/slice';
 import { useDispatch } from 'react-redux';
 import Providers from '@/store/provider';
 import Header from '@/app/components/header';
+import Cat from './../../styles/Category.module.css' 
 
 
 const CategoryProduct = ({ params }) => {
     const categoryColors = {
-        Tortillas: 'bg-blue-500 text-white',
-        Menu: 'bg-orange-400 text-white',
-        Picar: 'bg-red-500 text-white',
-        Pollos: ' bg-yellow-700 text-white',
-        Pescado: ' bg-indigo-900 text-white',
-        Bolsa: 'bg-white text-black'
+        Tortillas: `${Cat.tortillaCat}`,
+        Menu: `${Cat.menuCat}`,
+        Picar: `${Cat.picarCat}`,
+        Pollos: `${Cat.polloCat}`,
+        Pescado: `${Cat.pescadoCat}`,
+        Bolsa: `${Cat.bolsaCat}`
     };
     const { category } = params;
 
@@ -36,22 +37,22 @@ const CategoryProduct = ({ params }) => {
     return (
         <>
             
-                <div className="max-w-[760px] w-full bg-gray-200 mt-2">
+                <div className={Cat.header}>
                     
-                    <div className="flex flex-col" >
+                    <div className={Cat.div} >
                         {filteredProduct.map((productCategory) =>
-                            <button onClick={() => buy(productCategory)} key={productCategory.id} className=' w-full flex bg-slate-400 cursor-pointer active:scale-90 border-b border-black'>
+                            <button onClick={() => buy(productCategory)} key={productCategory.id} className={Cat.btn}>
 
-                            <div className={`flex items-center justify-start px-2 py-5 w-1/4 ${categoryColors[productCategory.category]}`}>
-             <div className="rounded-lg text-center font-semibold uppercase">
+                            <div className={`${Cat.blockBg} ${categoryColors[productCategory.category]}`}>
+             <div className={Cat.tag}>
                     {productCategory.category}
                   </div>
             </div>
-              <div className='flex items-center justify-between px-2 py-5 w-3/4'>
+              <div className={Cat.subTag}>
                  
-                <h5 className="text-md font-bold text-white">{productCategory.title}</h5>
+                <h5 className={Cat.h5}>{productCategory.title}</h5>
                   
-                  <p className="text-sm text-white">{productCategory.price}€</p>
+                  <p className={Cat.p}>{productCategory.price}€</p>
               </div>
 
                             </button>
