@@ -41,15 +41,16 @@ export default function Example() {
 
     return (
         <Transition.Root show={isOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={handleCloseCart}>
+            <Dialog as="div" className={`${Cart.relative} ${Cart.z10}`} onClose={handleCloseCart}>
                 <Transition.Child
                     as={Fragment}
-                    enter="ease-in-out duration-500"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-500"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
+                    enter={`${Cart.easeinout} ${Cart.duration500}`}
+                    enterFrom={Cart.opacity0}
+                    enterTo={Cart.opacity100}
+                    leave={`${Cart.easeinout} ${Cart.duration500}`}
+                    leaveFrom={Cart.opacity100}
+                    leaveTo={Cart.opacity0}
+                    
                 >
                     <div className={Cart.dialog} />
                 </Transition.Child>
@@ -59,12 +60,12 @@ export default function Example() {
                         <div className={Cart.container}>
                             <Transition.Child
                                 as={Fragment}
-                                enter="transform transition ease-in-out duration-500 sm:duration-700"
-                                enterFrom="translate-x-full"
-                                enterTo="translate-x-0"
-                                leave="transform transition ease-in-out duration-500 sm:duration-700"
-                                leaveFrom="translate-x-0"
-                                leaveTo="translate-x-full"
+                                enter={`${Cart.transform} ${Cart.transition} ${Cart.easeinout} ${Cart.duration500} ${Cart.duration700}`}
+                                enterFrom={Cart.translatexfull}
+                                enterTo={Cart.translatex0}
+                                leave={`${Cart.transform} ${Cart.transition} ${Cart.easeinout} ${Cart.duration500} ${Cart.duration700}`}
+                                leaveFrom={Cart.translatex0}
+                                leaveTo={Cart.translatexfull}
                             >
                                 <Dialog.Panel className={Cart.panel}>
                                     <div className={Cart.panelDiv}>
@@ -74,41 +75,41 @@ export default function Example() {
                                                 <div className={Cart.divTitle}>
                                                     <button
                                                         type="button"
-                                                        className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                                                        className={Cart.btn}
                                                         onClick={() => handleCloseCart()}
                                                     >
-                                                        <span className="absolute -inset-0.5" />
-                                                        <span className="sr-only">Close panel</span>
-                                                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                                        <span className={Cart.span} />
+                                                        <span className={Cart.span2}>Close panel</span>
+                                                        <XMarkIcon className={Cart.mark} aria-hidden="true" />
                                                     </button>
                                                 </div>
                                             </div>
 
-                                            <div className="mt-8">
-                                                <div className="flow-root">
-                                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                            <div className={Cart.div4}>
+                                                <div className={Cart.div5}>
+                                                    <ul role="list" className={Cart.div6}>
                                                         {cart.length > 0 ?
                                                             (cart.map((valor, indice) => (
-                                                                <li key={indice} className="flex py-6">
+                                                                <li key={indice} className={Cart.div7}>
 
 
-                                                                    <div className="ml-4 flex flex-1 flex-col">
+                                                                    <div className={Cart.div8}>
                                                                         <div>
-                                                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                            <div className={Cart.div9}>
                                                                                 <h3>
                                                                                     <Link href={`/products/${valor.id}`}>{valor.category}</Link>
                                                                                 </h3>
-                                                                                <p className="ml-4">{valor.price}€</p>
+                                                                                <p className={Cart.div10}>{valor.price}€</p>
                                                                             </div>
-                                                                            <p className="mt-1 text-sm text-gray-500">{valor.title}</p>
+                                                                            <p className={Cart.div11}>{valor.title}</p>
                                                                         </div>
-                                                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                                                            <p className="text-gray-500">Qty: {valor.quantity}</p>
+                                                                        <div className={Cart.div12}>
+                                                                            <p className={Cart.div13}>Qty: {valor.quantity}</p>
 
-                                                                            <div className="flex">
+                                                                            <div className={Cart.div14}>
                                                                                 <button
                                                                                     type="button"
-                                                                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                                    className={Cart.btn2}
                                                                                     onClick={() => eliminar(valor.id)}
                                                                                 >
                                                                                     Eliminar
@@ -119,42 +120,40 @@ export default function Example() {
                                                                 </li>
                                                             )))
                                                             :
-                                                            (<li className="flex py-6">No hay producto en el carrito</li>)
+                                                            (<li className={Cart.div15}>No hay producto en el carrito</li>)
                                                         }
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                        <div className={Cart.div16}>
+                                            <div className={Cart.div17}>
                                                 <p>Total</p>
                                                 <p>{total}€</p>
                                             </div>
 
-                                            <div className="flex gap-4 mt-6">
+                                            <div className={Cart.div18}>
                                                 <button
                                                     onClick={()=>HandleFinalizarCompra()}
                                                     href="#"
-                                                    className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                                                >
+                                                    className={Cart.div19}>
                                                     finalizar compra
                                                 </button>
                                             
                                                 <button
                                                     onClick={()=>HandleVaciarCart()}
                                                     href="#"
-                                                    className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-700"
-                                                >
+                                                    className={Cart.div20}>
                                                     vaciar carrito
                                                 </button>
                                             </div>
-                                            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                                            <div className={Cart.div21}>
                                                 <p>
                                                     o&nbsp;
                                                     <button
                                                         type="button"
-                                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                        className={Cart.div22}
                                                         onClick={handleCloseCart}
                                                     >
                                                         Seguir Comprando
